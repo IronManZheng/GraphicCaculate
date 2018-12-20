@@ -2,7 +2,7 @@ class People():   #定义人员的类
     def __init__(self,name,next,edge):
         if(next != None or edge != None):
             self.name = name
-            self.next = set()     #相邻的节点用set数据类型进行存储
+            self.next = []       #相邻的节点用列表数据类型进行存储
             self.edge = ()        #相邻的连接边用字典类型进行存储
         else:
             self.name = name
