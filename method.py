@@ -41,4 +41,10 @@ def add_edge(start,edge_name,width,end):#start为边的起点，edge_name为边�
 
 def __add_edge__(start,edge_name,width,end):
     #该方法正式进行赋值
-    return
+    i = 0
+    while i < len(people_repository):
+        if(people_repository[i].get_node_atr() == start):
+            people_repository[i].put_next(end)
+            people_repository[i].put_edge(edge_name,width)
+        else:
+            i += 1
