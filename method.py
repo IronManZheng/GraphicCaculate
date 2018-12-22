@@ -1,6 +1,8 @@
 import people_class
 
 people_repository = []       #定义一个存储people信息的容器
+edge_length_no_width = 0     #将无权重的路径长度设为全局变量
+edge_length_width = 0        #将有权重的路径长度设为全局变量
 
 
 def add_node(name):             #添加节点
@@ -81,4 +83,121 @@ def size_node():               #获得点的数量
 def size_age(i):               # 获得边的数量
     return len(people_repository[i].edge)
 
+
+
+def connectivity(test_start,test_end):     #判断任意两点的连通性
+    i = 0
+    j = 0
+    while i < len(people_repository):
+        if(people_repository[i].get_node_atr() == test_start):
+            while j < len(people_repository[i].next[j]):
+                m = find_next(None,people_repository[i].next[j],0)
+                if(m != None):            #如果m不为空，即找到了m，则返回1
+                    return 1
+                else:
+                    j += 1
+            if (j == len(people_repository[i].next[j])):
+                return 0                      #如果没有找到终点end，则返回0
+        else:
+            i += 1
+    if(i == len(people_repository)):
+        return 2                             #如果没有找到起点start，则返回2
+
+
+
+def find_next(m,end,i):       #通过递归寻找连接的终点
+    if(m.next != null):
+        while i < len(m.next):
+            m = m.next[i]
+            if(m.get_node_atr == end):
+                return m
+            else:
+                i += 1
+                find_next(m,end,i)
+
+
+
+
+def distanc(start,end):                 #计算两个节点之间的距离，无权重
+    i = 0
+    edge_length_no_width = 0            #每次调用该函数时先将该变量初始化一次
+    while i < len(people_repository):
+        if(people_repository[i].get_node_atr() == test_start):
+            while j < len(None,people_repository[i].next[j],0):
+                m = find_next_edge_no_width(people_repository[i].next[j])
+                if(m != None):
+                    return edge_length_no_width
+                else:
+                    return 0           #没有找到终点
+        else:
+            i += 1
+
+def find_next_edge_no_width(m,end,i):         #由distance函数调用的递归函数
+    if (m.next != null):
+        while i < len(m.next):
+            m = m.next[i]
+            if (m.get_node_atr == end):
+                return m
+            else:
+                i += 1
+                find_next_edge_no_width(m,end,i)
+
+
+
+
+
+def distanc_width(start,end):                 #计算两个节点之间的距离，有权重
+    i = 0
+    edge_length_width = 0            #每次调用该函数时先将该变量初始化一次
+    while i < len(people_repository):
+        if(people_repository[i].get_node_atr() == test_start):
+            while j < len(None,people_repository[i].next[j],0):
+                m = find_next_edge_no_width(people_repository[i].next[j])
+                if(m != None):
+                    return edge_length_width
+                else:
+                    return 0           #没有找到终点
+        else:
+            i += 1
+
+def find_next_edge_width(m,end,i):         #由distanc_width函数调用的递归函数
+    if (m.next != null):
+        while i < len(m.next):
+            m = m.next[i]
+            if (m.get_node_atr == end):
+                return m
+            else:
+                i += 1
+                edge_length_width += m.edge[m.edge.next[n].get_node_atr()]   #暂时命名为n
+                find_next_edge_no_width(m,end,i)
+
+
+
+
+def has_node(graphic,node_name):        #判断图是否包含某一个点
+    i = 0
+    while i < len(graphic):
+        if(graphic[i].get_node_atr() == node_name):
+            return 1                    #如果包含，则返回1
+        else:
+            i += 1
+
+    if(i == len(graphic)):
+        return 0                       #如果不包含，则返回0
+
+
+
+
+def has_edge(graphic,edge_name):       #判断一个图是否包含一条边
+    i = 0
+    j = 0
+    while i < len(graphic):
+        while j < len(graphic[i].next[j]):
+            if(graphic[i].next[j].get_node_atr() == edge_name):
+                return 1               #包含则返回1
+            else:
+                j += 1
+
+    if(i == len(graphic)):             #不包含则返回0
+        return 0
 
