@@ -13,8 +13,17 @@ class People():   #定义人员的类
         self.edge[edge_name] = width         #边的名字被命名为字典的键，边的权重被命名为字典的值
         return
 
-    def get_node_atr(self):  #获得点的属性
+    def get_node_atr(self):  #获得节点的名称
         return(self.name)
 
-    def get_neighbors_iter(self): #获得相邻点和相邻边的属性
-        return(self.next,self.edge)
+    def get_neighbors_iter(self): #获得节点的所有下一跳
+        return(self.next)
+
+    def get_neighbor_edge(self):  #获得节点的所有相邻边
+        return(self.edge)
+
+    def remove_neighbors_iter(self,i):   #删除节点的下一跳
+        del self.next[i]
+
+    def remove_neighbors_edge(self,end):
+        del self.edge[end]
